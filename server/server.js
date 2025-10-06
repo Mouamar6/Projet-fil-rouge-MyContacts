@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -32,7 +32,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Lancer serveur
 const PORT = process.env.PORT || 5000;
-=======
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -66,5 +65,4 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Lancer serveur
 const PORT = process.env.PORT || 5000;
->>>>>>> 3d320c97d7f7d18783634c7e23d2c7b67b5e8aed
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
