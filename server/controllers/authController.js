@@ -1,36 +1,4 @@
 
-/**
- * @swagger
- * tags:
- *   name: Auth
- *   description: Authentification des utilisateurs
- */
-
-/**
- * @swagger
- * /auth/register:
- *   post:
- *     summary: Crée un nouvel utilisateur
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       201:
- *         description: Utilisateur créé
- *       400:
- *         description: Email déjà utilisé
- *       500:
- *         description: Erreur serveur
- */
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -49,31 +17,6 @@ exports.register = async (req, res) => {
   }
 };
 
-/**
- * @swagger
- * /auth/login:
- *   post:
- *     summary: Connexion utilisateur
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       200:
- *         description: Retourne le token JWT
- *       400:
- *         description: Email ou mot de passe incorrect
- *       500:
- *         description: Erreur serveur
- */
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
