@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /**
  * @swagger
  * tags:
@@ -89,6 +89,7 @@ exports.login = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Erreur serveur : ' + err.message });
   }
+
 =======
 /**
  * @swagger
@@ -180,5 +181,4 @@ exports.login = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Erreur serveur : ' + err.message });
   }
->>>>>>> 3d320c97d7f7d18783634c7e23d2c7b67b5e8aed
 };
