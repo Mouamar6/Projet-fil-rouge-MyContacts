@@ -90,7 +90,6 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur : ' + err.message });
   }
 
-=======
 /**
  * @swagger
  * tags:
@@ -182,3 +181,4 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur : ' + err.message });
   }
 };
+
