@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // pour redirection
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // pour afficher les erreurs 
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -16,23 +16,29 @@ function Register() {
       const res = await fetch("http://localhost:5000/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       let data;
       try {
-        data = await res.json(); // essayer de parser le JSON
+        data = await res.json();
       } catch {
         throw new Error("Le serveur n'a pas renvoyé de JSON valide");
       }
 
-      if (res.ok) {
-        alert(data.message);
+      // Vérifie que user existe dans la réponse
+      if (res.ok && data.user) {
+        // stocker le token JWT
+        localStorage.setItem("token", data.token);
+
+        // réinitialiser les champs
         setEmail("");
         setPassword("");
-        navigate("/Contacts"); // redirection
+
+        // redirection vers la page utilisateur unique
+        navigate(`/user/${data.user._id}`);
       } else {
-        setErrorMessage(data.error || "Erreur inconnue");
+        setErrorMessage(data.message || "Erreur inconnue");
       }
     } catch (err) {
       setErrorMessage(err.message);

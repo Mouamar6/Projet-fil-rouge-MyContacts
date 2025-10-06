@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import Contacts from "./Contacts";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Routes>
            <Route path="" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+           <Route path="/register" element={<Register />} />
+           <Route path="/contacts" element={<Contacts />} />
         </Routes>
       </div>
     </Router>
