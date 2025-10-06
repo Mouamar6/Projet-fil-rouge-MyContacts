@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -24,6 +24,7 @@ const swaggerSpec = swaggerJsdoc(options);
 function swaggerJsDocs(app) {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }
+
 
 =======
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -51,6 +52,4 @@ const swaggerSpec = swaggerJsdoc(options);
 function swaggerJsDocs(app) {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }
-
->>>>>>> 3d320c97d7f7d18783634c7e23d2c7b67b5e8aed
 module.exports = swaggerJsDocs;
