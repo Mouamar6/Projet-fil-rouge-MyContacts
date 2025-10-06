@@ -30,8 +30,6 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connecté !'))
   .catch(err => console.log('Erreur MongoDB :', err));
 
-// Lancer serveur
-const PORT = process.env.PORT || 5000;
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
