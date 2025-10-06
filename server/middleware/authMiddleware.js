@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
@@ -15,7 +14,6 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-=======
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
@@ -32,5 +30,4 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
->>>>>>> 3d320c97d7f7d18783634c7e23d2c7b67b5e8aed
 module.exports = authMiddleware;
