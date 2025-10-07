@@ -10,7 +10,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // reset erreur
+    setErrorMessage("");
 
     try {
       const res = await fetch("http://localhost:5000/auth/register", {
@@ -26,16 +26,12 @@ function Register() {
         throw new Error("Le serveur n'a pas renvoyé de JSON valide");
       }
 
-      // Vérifie que user existe dans la réponse
       if (res.ok && data.user) {
-        // stocker le token JWT
         localStorage.setItem("token", data.token);
 
-        // réinitialiser les champs
         setEmail("");
         setPassword("");
 
-        // redirection vers la page utilisateur unique
         navigate(`/user/${data.user._id}`);
       } else {
         setErrorMessage(data.message || "Erreur inconnue");

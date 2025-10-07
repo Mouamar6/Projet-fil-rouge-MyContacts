@@ -75,7 +75,7 @@
 }
 
 .contact-list li button:first-of-type {
-  background-color: #ffc107; /* Éditer */
+  background-color: #ffc107;
   color: #fff;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .contact-list li button:last-of-type {
-  background-color: #dc3545; /* Supprimer */
+  background-color: #dc3545;
   color: #fff;
 }
 

@@ -6,9 +6,9 @@ function Contacts() {
   const [form, setForm] = useState({ firstName: "", lastName: "", phone: "" });
   const [editId, setEditId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const token = localStorage.getItem("token");
-
 
   const fetchContacts = async () => {
     try {
@@ -27,11 +27,26 @@ function Contacts() {
   }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "phone") {
+      const onlyDigits = value.replace(/\D/g, "");
+      if (onlyDigits.length <= 10) {
+        setForm({ ...form, phone: onlyDigits });
+        setPhoneError("");
+      }
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (form.phone.length !== 10) {
+      return;
+    }
+
     try {
       let res;
       if (editId) {
@@ -56,6 +71,7 @@ function Contacts() {
 
       setForm({ firstName: "", lastName: "", phone: "" });
       setEditId(null);
+      setPhoneError("");
       fetchContacts();
     } catch (err) {
       setErrorMessage("Erreur serveur : " + err.message);
@@ -65,6 +81,7 @@ function Contacts() {
   const handleEdit = (contact) => {
     setForm(contact);
     setEditId(contact._id);
+    setPhoneError("");
   };
 
   const handleDelete = async (id) => {
@@ -107,12 +124,14 @@ function Contacts() {
           required
         />
         <input
+          type="tel"
           name="phone"
           placeholder="Téléphone"
           value={form.phone}
           onChange={handleChange}
           required
         />
+        {phoneError && <p style={{ color: "red" }}>{phoneError}</p>}
         <button type="submit">{editId ? "Modifier" : "Ajouter"}</button>
       </form>
 
