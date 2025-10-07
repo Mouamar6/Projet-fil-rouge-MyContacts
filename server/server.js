@@ -187,7 +187,9 @@ app.delete('/contacts/:id', authMiddleware, contactController.deleteContact);
 
 const swaggerDocs = require('./swagger');
 swaggerDocs(app);
-
+app.get('/', (req, res) => {
+  res.redirect('/api-docs'); // redirige automatiquement vers la documentation Swagger
+});
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connecté !'))
   .catch(err => console.log('Erreur MongoDB :', err));
