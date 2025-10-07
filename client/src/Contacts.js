@@ -9,7 +9,7 @@ function Contacts() {
 
   const token = localStorage.getItem("token");
 
-  // Récupérer les contacts
+
   const fetchContacts = async () => {
     try {
       const res = await fetch("http://localhost:5000/contacts", {
@@ -26,7 +26,6 @@ function Contacts() {
     fetchContacts();
   }, []);
 
-  // Gestion du formulaire
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -36,14 +35,12 @@ function Contacts() {
     try {
       let res;
       if (editId) {
-        // Édition
         res = await fetch(`http://localhost:5000/contacts/${editId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
           body: JSON.stringify(form)
         });
       } else {
-        // Ajout
         res = await fetch("http://localhost:5000/contacts", {
           method: "POST",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
